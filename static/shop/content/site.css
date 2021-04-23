@@ -1,0 +1,89 @@
+/* Custom styles for website Your Perfect Tie */
+body {
+  padding-top: 56px;
+  margin-bottom: 60px;
+  font-family: 'Alice', serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.account {
+  margin-left: 10px;
+}
+
+.copyright {
+  float: left;
+}
+
+.copyright, .social-icons {
+  margin: 0;
+}
+
+.social-icons {
+  text-align: right;
+}
+
+.social-icons li {
+  display:inline-block;
+  list-style-type:none;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+}
+
+.social-icons li a {
+  border-bottom: none;
+}
+
+.social-icons li img {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.shopping-cart {
+  margin-top: -6px;
+}
+
+.sharp {
+  border-radius: 0;
+}
+
+body > .container {
+  padding: 20px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.navbar-nav > li {
+  margin-left: 10px;
+}
+
+/* Overwrite Carousel Code */
+.carousel-indicators {
+  left:auto;
+  right:20px;
+  margin-right:0;
+  width:auto;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
