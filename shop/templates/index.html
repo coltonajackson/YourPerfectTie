@@ -3,6 +3,11 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Welcome to Your Perfect Tie</h1>
-<p>This is the home page.</p>
-{% endblock %}
+<div class="jumbotron">
+	<h1 class="display-4">Your Perfect Tie</h1>
+	<p class="lead">Colton Jackson's first web app with Django.</p>
+	<p class="lead">
+		<a class="btn btn-primary btn-lg" href="{% url 'item_list' %}" role="button">View All Items</a>
+	</p>
+</div>
+{% endblock content %}

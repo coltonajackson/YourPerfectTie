@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Local Apps
     'shop',
+    'items',
     'users',
     # 3rd Party Apps
     'crispy_forms',
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+TIME_ZONE = 'America/New_York'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
