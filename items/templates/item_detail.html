@@ -21,7 +21,7 @@
 	<div>
 		{% csrf_token %}
 		{{ form|crispy }}
-		<a href="{% url 'comment_new' %}">Add Comment</a>
+		<!--<a href="{ url 'comment_new' }">Add Comment</a>-->
 	</div>
 </div>
 <p>Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
