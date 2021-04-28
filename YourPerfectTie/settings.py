@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'users',
     # 3rd Party Apps
     'crispy_forms',
+    # Django Contrib Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,6 +85,17 @@ WSGI_APPLICATION = 'YourPerfectTie.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'HOST': os.getenv('DB_HOSTNAME'),
+#         'NAME': os.getenv('DB_NAME'),
+#         'USER': os.getenv('DB_USERNAME'),
+#         'PASSWORD': os.getenv('DB_PASSWORD'),
+#         'PORT': os.getenv('DB_PORT'),
+#     }
+# }
 
 DATABASES = {
     'default': {
