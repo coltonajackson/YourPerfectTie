@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="item-entry">
+	<h2>{{ object.name }}</h2>
+	<p>by {{ object.publisher }} | {{ object.created_at }}</p>
+	<h6>{{ object.description }}</h6>
+	<p>${{ object.current_price }}</p>
+	{% if user.is_authenticated and user.is_staff %}
+	<p><a href="{% url 'item_edit' item.pk %}">Edit</a> | <a href="{% url 'item_delete' item.pk %}">Delete</a></p>
+	{% endif %}
+</div>
+<br>
+<div>
+	{% for comment in item.comments.all %}
+	<h6>Comment By <span class="font-weight-bold">{{ comment.publisher }}</span></h6>
+	<p>{{ comment }}</p>
+	{% endfor %}
+	<div>
+		{% csrf_token %}
+		{{ form|crispy }}
+		<!--<a href="{ url 'comment_new' }">Add Comment</a>-->
+	</div>
+</div>
+<p>Back to <a href="{% url 'item_list' %}">All Items</a>.</p>
+{% endblock content %}
