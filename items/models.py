@@ -7,8 +7,9 @@ class Item(models.Model):
 	name = models.CharField(max_length=256, null=False)
 	description = models.TextField(null=True)
 	category = models.IntegerField(null=True)
+	main_image = models.ImageField(upload_to='images/', blank=True)
 	current_price = models.DecimalField(null=False, decimal_places=2, max_digits=8)
-	rating = models.DecimalField(null=True, decimal_places=2, max_digits=2)
+	rating = models.DecimalField(null=True, blank=True, decimal_places=2, max_digits=2)
 	created_at = models.DateTimeField(auto_now_add=True)
 	publisher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
@@ -16,7 +17,7 @@ class Item(models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return reverse('item_detail', args=[str(self.id)])
+		return reverse('item_detail', kwargs={'pk': str(self.pk)})
 
 class Comment(models.Model):
 	item = models.ForeignKey(

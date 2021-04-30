@@ -1,18 +1,18 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 from .models import Item, Comment
 
-class ItemListView(LoginRequiredMixin, ListView):
+class ItemListView(ListView):
 	model = Item
 	template_name = 'item_list.html'
-	login_url = 'login'
 
-class ItemDetailView(LoginRequiredMixin, DetailView):
+class ItemDetailView(DetailView):
 	model = Item
 	template_name = 'item_detail.html'
-	login_url = 'login'
 
 class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = Item
@@ -36,7 +36,7 @@ class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class ItemCreateView(LoginRequiredMixin, CreateView):
 	model = Item
-	fields = ('name', 'description', 'current_price')
+	fields = ('name', 'description', 'category', 'current_price', 'main_image')
 	template_name = 'item_new.html'
 	login_url = 'login'
 

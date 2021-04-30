@@ -1,0 +1,28 @@
+.cojack-card {
+    margin: 5px;
+}
+.cojack-cart {
+    margin-left: 10px;
+}
+.cojack-col {
+    margin-bottom: 10px;
+}
+.cojack-container {
+	margin-bottom: 100px;
+}
+.cojack-footer {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+.cojack-image {
+    border-style: double;
+    display: block;
+    margin: auto;
+    width: 80%;
+}
+.cojack-nav-options {
+    margin-right: 10px;
+}

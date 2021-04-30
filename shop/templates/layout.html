@@ -4,6 +4,7 @@
 <head>
 	<title>{% block title %}{% endblock %}</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'content/base.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'content/cojack.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'content/bootstrap.min.css' %}">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script type="text/javascript" src="{% static 'scripts/bootstrap.min.js' %}"></script>
@@ -12,10 +13,20 @@
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 		<a class="navbar-brand" href="{% url 'home' %}">Your Perfect Tie</a>
-		{% if user.is_authenticated and user.is_staff %}
-		<ul class="navbar-nav mr-auto">
+		{% if user.is_authenticated %}
+		{% if user.is_staff %}
+		<ul class="cojack-nav-options navbar-nav mr-auto">
 			<li class="nav-item"><a href="{% url 'item_new' %}">+ New Item</a></li>
 		</ul>
+		{% endif %}
+		<a href="{% url 'cart' %}">
+			<button type="button" class="cojack-cart btn btn-primary">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+					<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+				</svg>
+				Cart
+			</button>
+		</a>
 		{% endif %}
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarCollapse" aria-controls="navbarCollapse"
@@ -52,10 +63,10 @@
 			{% endif %}
 		</div>
 	</nav>
-	<div class="container">
+	<div class="cojack-container container">
 		{% block content %}{% endblock content %}
 	</div>
-	<footer class="footer">
+	<footer class="cojack-footer page-footer fixed-bottom">
 		<div class="container">
 			<span class="text-muted">Place sticky footer content here.</span>
 		</div>
