@@ -11,6 +11,9 @@
 	<p class="lead">
 		<a class="btn btn-primary btn-lg" href="{% url 'item_list' %}" role="button">View All Items</a>
 		<a class="btn btn-primary btn-lg" href="{% url 'category_list' %}" role="button">View All Categories</a>
+		{% if user.is_staff %}
+		<a class="btn btn-primary btn-lg" href="{% url 'user_list' %}" role="button">View All Users</a>
+		{% endif %}
 	</p>
 </div>
 {% comment %}

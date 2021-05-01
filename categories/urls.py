@@ -8,7 +8,6 @@ from .views import (
 
 urlpatterns = [
     path('<int:pk>/edit/', CategoryUpdateView.as_view(), name='category_edit'),
-	path('<int:pk>/', CategoryDetailView.as_view(), name='category_detail'),
 	path('<int:pk>/delete/', CategoryDeleteView.as_view(), name='category_delete'),
 	path('new/', CategoryCreateView.as_view(), name='category_new'),
 	path('', CategoryListView.as_view(), name='category_list'),
