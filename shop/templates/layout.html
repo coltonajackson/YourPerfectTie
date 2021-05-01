@@ -12,7 +12,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-		<a class="navbar-brand" href="{% url 'home' %}">Your Perfect Tie</a>
+		<a class="navbar-brand cojack-brand" href="{% url 'home' %}">Your Perfect Tie</a>
 		{% if user.is_authenticated %}
 		<a href="{% url 'cart' %}">
 			<button type="button" class="cojack-cart btn btn-primary">
@@ -22,22 +22,14 @@
 				Cart
 			</button>
 		</a>
-		{% if user.is_staff %}
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarCollapse" aria-controls="navbarCollapse"
-		aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		{% endif %}
-		{% endif %}
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarCollapse" aria-controls="navbarCollapse"
 		aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse justify-content-end ml-1" id="navbarCollapse">
-			{% if user.is_authenticated %}
 			<ul class="navbar-nav">
+				{% if user.is_staff %}
 				<li class="nav-item">
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,8 +43,7 @@
 						</div>
 					</div>
 				</li>
-			</ul>
-			<ul class="navbar-nav">
+				{% endif %}
 				<li class="nav-item">
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,10 +53,8 @@
 							<a class="dropdown-item" href="{% url 'admin:index' %}">Admin Portal</a>
 							<div class="dropdown-divider"></div>
 							{% endif %}
-							{% comment %}
-							<a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Profile</a>
+							<a class="dropdown-item" href="{% url 'edit_profile' user.pk %}">Edit Profile</a>
 							<div class="dropdown-divider"></div>
-							{% endcomment %}
 							<a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
@@ -73,7 +62,7 @@
 					</div>
 				</li>
 			</ul>
-			{% else %}
+		{% else %}
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
 					<div class="dropdown">
@@ -89,15 +78,8 @@
 					</div>
 				</li>
 			</ul>
-			{% comment %}
-			<form class="form-inline ml-auto">
-				<a href="{% url 'login' %}" class="btn btn-outline-secondary">Log In</a>
-				<a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
-			</form>
-			<a href="{% url 'password_reset' %}" class="btn btn-secondary ml-2">Reset password</a>
-			{% endcomment %}
-			{% endif %}
 		</div>
+		{% endif %}
 	</nav>
 	<div class="cojack-container container">
 		{% block content %}{% endblock content %}
@@ -106,7 +88,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<span class="text-muted">Place sticky footer content here.</span>
+					<span class="text-muted">&copy Your Perfect Tie - {% now 'Y' %}</span>
 				</div>
 				<div class="col">
 					<ul class="social-network social-circle float-right">
