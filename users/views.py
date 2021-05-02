@@ -15,7 +15,7 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = CustomUser
 	#form_class = CustomUserChangeForm
 	fields = ('username', 'first_name', 'last_name', 'email', 'age',)
-	template_name = 'users/edit_profile.html'
+	template_name = 'edit_profile.html'
 	success_url = reverse_lazy('home')
 	login_url = 'login'
 
