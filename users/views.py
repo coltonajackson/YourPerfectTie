@@ -9,7 +9,7 @@ from .models import CustomUser
 class SignUpView(CreateView):
 	form_class = CustomUserCreationForm
 	success_url = reverse_lazy('login')
-	template_name = 'users/signup.html'
+	template_name = 'signup.html'
 
 class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = CustomUser
