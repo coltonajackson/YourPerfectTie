@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
@@ -8,25 +8,23 @@ from .models import Category
 
 class CategoryListView(ListView):
 	model = Category
-	template_name = 'category_list.html'
+	template_name = 'categories/category_list.html'
 
 class CategoryDetailView(DetailView):
 	model = Category
-	template_name = 'category_detail.html'
+	template_name = 'categories/category_detail.html'
 
-class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 	model = Category
+	permission_required = ('categories.edit',)
 	fields = ('name', 'gender')
-	template_name = 'category_edit.html'
+	template_name = 'categories/category_edit.html'
 	login_url = 'login'
 
-	def test_func(self):
-		obj = self.get_object()
-		return obj.publisher == self.request.user
-
-class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 	model = Category
-	template_name = 'category_delete.html'
+	permission_required = ('categories.delete',)
+	template_name = 'categories/category_delete.html'
 	success_url = reverse_lazy('category_list')
 	login_url = 'login'
 
@@ -37,7 +35,7 @@ class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class CategoryCreateView(LoginRequiredMixin, CreateView):
 	model = Category
 	fields = ('name', 'gender')
-	template_name = 'category_new.html'
+	template_name = 'categories/category_new.html'
 	login_url = 'login'
 
 	def form_valid(self, form):

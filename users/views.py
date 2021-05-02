@@ -9,13 +9,13 @@ from .models import CustomUser
 class SignUpView(CreateView):
 	form_class = CustomUserCreationForm
 	success_url = reverse_lazy('login')
-	template_name = 'signup.html'
+	template_name = 'users/signup.html'
 
 class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = CustomUser
 	#form_class = CustomUserChangeForm
 	fields = ('username', 'first_name', 'last_name', 'email', 'age',)
-	template_name = 'edit_profile.html'
+	template_name = 'users/edit_profile.html'
 	success_url = reverse_lazy('home')
 	login_url = 'login'
 
@@ -25,11 +25,11 @@ class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class CustomUserListView(ListView):
 	model = CustomUser
-	template_name = 'user_list.html'
+	template_name = 'users/user_list.html'
 
 class CustomUserDetailView(DetailView):
 	model = CustomUser
-	template_name = 'user_detail.html'
+	template_name = 'users/user_detail.html'
 
 class CustomUserUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 	model = CustomUser
@@ -38,14 +38,14 @@ class CustomUserUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateVi
 		fields = ('username', 'first_name', 'last_name', 'email', 'age', 'is_staff', 'is_superuser', 'is_active')
 	else:
 		fields = ('username', 'first_name', 'last_name', 'email', 'age')
-	template_name = 'user_edit.html'
+	template_name = 'users/user_edit.html'
 	success_url = reverse_lazy('user_list')
 	login_url = 'login'
 
 class CustomUserDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 	model = CustomUser
 	permission_required = ('users.delete',)
-	template_name = 'user_delete.html'
+	template_name = 'users/user_delete.html'
 	success_url = reverse_lazy('user_list')
 	login_url = 'login'
 
@@ -59,7 +59,7 @@ class CustomUserCreateView(LoginRequiredMixin, CreateView):
 		fields = ('username', 'first_name', 'last_name', 'email', 'age', 'is_staff', 'is_superuser', 'is_active')
 	else:
 		fields = ('username', 'first_name', 'last_name', 'email', 'age')
-	template_name = 'user_new.html'
+	template_name = 'users/user_new.html'
 	success_url = reverse_lazy('user_list')
 	login_url = 'login'
 
