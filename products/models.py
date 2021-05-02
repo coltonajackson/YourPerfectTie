@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from categories.models import Category
 
-class Item(models.Model):
+class Product(models.Model):
 	name = models.CharField(max_length=256, null=False)
 	description = models.TextField(null=True)
 	main_image = models.ImageField(upload_to='images/', blank=True)
@@ -18,11 +18,11 @@ class Item(models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return reverse('item_detail', kwargs={'pk': str(self.pk)})
+		return reverse('product_detail', kwargs={'pk': str(self.pk)})
 
 class Comment(models.Model):
-	item = models.ForeignKey(
-		Item, 
+	product = models.ForeignKey(
+		Product, 
 		on_delete=models.CASCADE,
 		related_name='comments',
 	)
@@ -33,4 +33,4 @@ class Comment(models.Model):
 		return self.comment
 
 	def get_absolute_url(self):
-		return reverse('item_list')
+		return reverse('product_list')

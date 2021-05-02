@@ -4,40 +4,40 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-from .models import Item, Comment
+from .models import Product, Comment
 
-class ItemListView(ListView):
-	model = Item
-	template_name = 'items/item_list.html'
+class ProductListView(ListView):
+	model = Product
+	template_name = 'products/product_list.html'
 
-class ItemDetailView(DetailView):
-	model = Item
-	template_name = 'items/item_detail.html'
+class ProductDetailView(DetailView):
+	model = Product
+	template_name = 'products/product_detail.html'
 
-class ItemUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-	model = Item
-	fields = ('name', 'description', 'current_price')
-	template_name = 'items/item_edit.html'
-	login_url = 'login'
-
-	def test_func(self):
-		obj = self.get_object()
-		return obj.publisher == self.request.user
-
-class ItemDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-	model = Item
-	template_name = 'items/item_delete.html'
-	success_url = reverse_lazy('item_list')
-	login_url = 'login'
-
-	def test_func(self):
-		obj = self.get_object()
-		return obj.publisher == self.request.user
-
-class ItemCreateView(LoginRequiredMixin, CreateView):
-	model = Item
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+	model = Product
 	fields = ('name', 'description', 'category', 'current_price', 'main_image')
-	template_name = 'items/item_new.html'
+	template_name = 'products/product_edit.html'
+	login_url = 'login'
+
+	def test_func(self):
+		obj = self.get_object()
+		return obj.publisher == self.request.user
+
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+	model = Product
+	template_name = 'products/product_delete.html'
+	success_url = reverse_lazy('product_list')
+	login_url = 'login'
+
+	def test_func(self):
+		obj = self.get_object()
+		return obj.publisher == self.request.user
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+	model = Product
+	fields = ('name', 'description', 'category', 'current_price', 'main_image')
+	template_name = 'products/product_new.html'
 	login_url = 'login'
 
 	def form_valid(self, form):
@@ -62,7 +62,7 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Comment
 	template_name = 'comments/comment_delete.html'
-	success_url = reverse_lazy('item_detail')
+	success_url = reverse_lazy('product_detail')
 	login_url = 'login'
 
 	def test_func(self):
@@ -70,7 +70,7 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		return obj.publisher == self.request.user
 
 class CommentCreateView(LoginRequiredMixin, CreateView):
-	model = Item
+	model = Comment
 	fields = ('comment',)
 	template_name = 'comments/comment_new.html'
 	login_url = 'login'

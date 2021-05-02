@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Item, Comment
+from .models import Product, Comment
 
 class CommentInline(admin.TabularInline):
 	model = Comment
 	extra = 0
 
-class ItemAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
 	inlines = [
 		CommentInline,
 	]
 
-admin.site.register(Item, ItemAdmin)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Comment)

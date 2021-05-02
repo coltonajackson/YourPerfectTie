@@ -37,8 +37,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Local Apps
     'shop',
-    'cart',
-    'items',
+    'carton',
+    'products',
     'categories',
     'users',
     # 3rd Party Apps
@@ -55,6 +55,8 @@ INSTALLED_APPS = [
 TIME_ZONE = 'America/New_York'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+CART_PRODUCT_MODEL = 'products.models.Product'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
