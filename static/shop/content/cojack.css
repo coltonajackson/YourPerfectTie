@@ -11,7 +11,7 @@
     margin-bottom: 10px;
 }
 .cojack-container {
-	margin-bottom: 100px;
+	margin: 100px 0 100px 0;
 }
 .cojack-footer {
     position: fixed;

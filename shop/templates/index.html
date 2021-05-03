@@ -16,30 +16,30 @@
 		{% endif %}
 	</p>
 </div>
-{% comment %}
-<h2>All Items</h2>
-<br/>
 <div class="cojack-container container">
+	<h2>All Products</h2>
 	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-		{% for item in all_items %}
+		{% for product in object_list %}
 		<div class="cojack-col col">
 			<div class="card shadow-sm">
-		  		{% if item.main_image %}
-				<a href="{% url 'item_detail' item.pk %}"><img src="{% static '{{ item.main_image.url }}' %}" alt="{{ item.name }}" /></a>
-				{% endif %}
+				<div class="card-header">
+					{% if product.main_image %}
+					<a class="image-url" href="{% url 'product_detail' product.pk %}"><img class="cojack-image" src="{{ product.main_image.url }}" alt="{{ product.name }}"></a>
+					{% endif %}
+				</div>
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-center">
-						<a href="{% url 'item_detail' item.pk %}"><h6>{{ item.name }}</h6></a>
-						<p class="text-muted">${{ item.current_price }}</p>
+						<a href="{% url 'product_detail' product.pk %}"><h6>{{ product.name }}</h6></a>
+						<p class="text-muted">${{ product.current_price }}</p>
 					</div>
-					<p class="card-text">{{ item.description }}</p>
+					<p class="card-text">{{ product.description }}</p>
 					<div class="d-flex justify-content-between align-items-center">
 						<div class="btn-group">
+							{% comment %}<a href="{% url 'add_to_cart' product.pk %}"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>{% endcomment %}
 							<a href="#"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
-							<a href="#"><button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button></a>
 							{% if user.is_authenticated and user.is_staff %}
-							<a href="{% url 'item_edit' item.pk %}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
-							<a href="{% url 'item_delete' item.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+							<a href="{% url 'product_edit' product.pk %}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
+							<a href="{% url 'product_delete' product.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
 							{% endif %}
 						</div>
 					  </div>
@@ -49,5 +49,4 @@
 		{% endfor %}
 	</div>
 </div>
-{% endcomment %}
 {% endblock %}

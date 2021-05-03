@@ -9,7 +9,7 @@
 		<div class="card cojack-card">
 			<div class="card-header">
 				{% if product.main_image %}
-				<img class="cojack-image" src="{{ product.main_image.url }}" alt="{{ product.name }}">
+				<a class="image-url" href="{% url 'product_detail' product.pk %}"><img class="cojack-image" src="{{ product.main_image.url }}" alt="{{ product.name }}"></a>
 				{% endif %}
 			</div>
 			<div class="card-body">

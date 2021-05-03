@@ -11,6 +11,9 @@ header h1 a {
 	color: red;
 	text-decoration: none;
 }
+.image-url {
+	color: black;
+}
 .nav-left {
 	margin-right: auto;
 }

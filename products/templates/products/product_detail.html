@@ -6,7 +6,7 @@
 <div class="item-entry">
 	<div class="card">
 		<div class="card-header">
-			{% if item.main_image %}
+			{% if object.main_image %}
 			<img class="cojack-image" src="{{ object.main_image.url }}" alt="{{ object.name }}">
 			{% endif %}
 		</div>
@@ -21,17 +21,12 @@
 				<div class="btn-group">
 					<a href="#"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
 					{% if user.is_authenticated and user.is_staff %}
-					<a href="{% url 'product_edit' item.pk %}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
-					<a href="{% url 'product_delete' item.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+					<a href="{% url 'product_edit' product.pk %}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
+					<a href="{% url 'product_delete' product.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
 					{% endif %}
 				</div>
 			</div>
-			{% comment %}
-			{% if user.is_authenticated and user.is_staff %}
-			<p><a href="{% url 'product_edit' item.pk %}">Edit</a> | <a href="{% url 'product_delete' item.pk %}">Delete</a></p>
-			{% endif %}
-			{% endcomment %}
-			<p>Back to <a href="{% url 'product_list' %}">All Items</a>.</p>
+			<p>Back to <a href="{% url 'product_list' %}">All Products</a>.</p>
 		</div>
 		<div class="card-footer">
 			{% for comment in item.comments.all %}
@@ -41,7 +36,7 @@
 			<div>
 				{% csrf_token %}
 				{{ form|crispy }}
-				{% comment %}<a href="{% url 'comment_new' %}">Add Comment</a>{% endcomment %}
+				<a href="{% url 'comment_new' product.pk %}">Add Comment</a>
 			</div>
 		</div>
 	</div>
