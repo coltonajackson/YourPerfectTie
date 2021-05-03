@@ -49,10 +49,6 @@ class CustomUserDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteVi
 	success_url = reverse_lazy('user_list')
 	login_url = 'login'
 
-	def test_func(self):
-		obj = self.get_object()
-		return obj.is_superuser
-
 class CustomUserCreateView(LoginRequiredMixin, CreateView):
 	model = CustomUser
 	if (get_user_model().is_superuser):

@@ -36,7 +36,9 @@
 			<div>
 				{% csrf_token %}
 				{{ form|crispy }}
+				{% if user.is_authenticated %}
 				<a href="{% url 'comment_new' product.pk %}">Add Comment</a>
+				{% endif %}
 			</div>
 		</div>
 	</div>
