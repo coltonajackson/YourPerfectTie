@@ -17,7 +17,7 @@ class CategoryDetailView(DetailView):
 class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 	model = Category
 	permission_required = ('categories.edit',)
-	fields = ('name', 'gender')
+	fields = ('name', 'gender', 'age_group')
 	template_name = 'categories/category_edit.html'
 	login_url = 'login'
 
@@ -34,7 +34,7 @@ class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):
 	model = Category
-	fields = ('name', 'gender')
+	fields = ('name', 'gender', 'age_group')
 	template_name = 'categories/category_new.html'
 	login_url = 'login'
 

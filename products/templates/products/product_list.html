@@ -22,14 +22,15 @@
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="btn-group">
 						{% comment %}<a href="{% url 'add_to_cart' product.pk %}"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>{% endcomment %}
-						<a href="#"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
+						<a class="mr-1" href="#"><button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
 						{% if user.is_authenticated and user.is_staff %}
 						<a href="{% url 'product_edit' product.pk %}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
-						<a href="{% url 'product_delete' product.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+						<a class="ml-1" href="{% url 'product_delete' product.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
 						{% endif %}
 					</div>
 				</div>
 			</div>
+			{% comment %}
 			<div class="card-footer text-center text-muted">
 				{% for comment in product.comments.all %}
 				<p>
@@ -38,6 +39,7 @@
 				</p>
 				{% endfor %}
 			</div>
+			{% endcomment %}
 		</div>
 		{% endfor %}
 	</div>

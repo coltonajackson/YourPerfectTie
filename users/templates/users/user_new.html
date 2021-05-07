@@ -8,4 +8,12 @@
 	{{ form|crispy }}
 	<button class="btn btn-success ml-2" type="submit">Save</button>
 </form>
-{% endblock content %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+	$(function(){
+		$('#id_birth_date').datetimepicker();
+	});
+</script>
+{% endblock %}

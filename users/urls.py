@@ -11,6 +11,7 @@ urlpatterns = [
 	# Any Known User URLs
 	path('<int:pk>/edit/', CustomUserUpdateView.as_view(), name='user_edit'),
 	path('<int:pk>/delete/', CustomUserDeleteView.as_view(), name='user_delete'),
+	path('<int:pk>/', CustomUserDetailView.as_view(), name='user_detail'),
 	path('new/', CustomUserCreateView.as_view(), name='user_new'),
 	path('', CustomUserListView.as_view(), name='user_list'),
 ]

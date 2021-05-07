@@ -11,7 +11,7 @@
 			{% endif %}
 		</div>
 		<div class="card-body">
-			<h2>{{ object.name }} for {{ category.gender|yesno:"Male,Female" }}s</h2>
+			<h2>{{ object.name }} for {{ category.age_group|yesno:"Adult,Young" }} {{ category.gender|yesno:"Male,Female" }}s</h2>
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="btn-group">
 					{% if user.is_authenticated and user.is_staff %}

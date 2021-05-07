@@ -14,7 +14,7 @@ class SignUpView(CreateView):
 class EditProfileView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 	model = CustomUser
 	#form_class = CustomUserChangeForm
-	fields = ('username', 'first_name', 'last_name', 'email', 'age',)
+	fields = ('username', 'first_name', 'last_name', 'email', 'birth_date',)
 	template_name = 'edit_profile.html'
 	success_url = reverse_lazy('home')
 	login_url = 'login'
@@ -35,9 +35,9 @@ class CustomUserUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateVi
 	model = CustomUser
 	permission_required = ('users.edit',)
 	if (get_user_model().is_superuser):
-		fields = ('username', 'first_name', 'last_name', 'email', 'age', 'is_staff', 'is_superuser', 'is_active')
+		fields = ('username', 'first_name', 'last_name', 'email', 'birth_date', 'is_staff', 'is_superuser', 'is_active')
 	else:
-		fields = ('username', 'first_name', 'last_name', 'email', 'age')
+		fields = ('username', 'first_name', 'last_name', 'email', 'birth_date')
 	template_name = 'users/user_edit.html'
 	success_url = reverse_lazy('user_list')
 	login_url = 'login'
@@ -52,9 +52,9 @@ class CustomUserDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteVi
 class CustomUserCreateView(LoginRequiredMixin, CreateView):
 	model = CustomUser
 	if (get_user_model().is_superuser):
-		fields = ('username', 'first_name', 'last_name', 'email', 'age', 'is_staff', 'is_superuser', 'is_active')
+		fields = ('username', 'first_name', 'last_name', 'email', 'age', 'birth_date', 'is_staff', 'is_superuser', 'is_active')
 	else:
-		fields = ('username', 'first_name', 'last_name', 'email', 'age')
+		fields = ('username', 'first_name', 'last_name', 'email', 'age', 'birth_date')
 	template_name = 'users/user_new.html'
 	success_url = reverse_lazy('user_list')
 	login_url = 'login'

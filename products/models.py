@@ -17,6 +17,9 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
+	def get_display_price(self):
+		return "{0:2f}".format(self.current_price)
+
 	def get_absolute_url(self):
 		return reverse('product_detail', kwargs={'pk': str(self.pk)})
 
@@ -28,6 +31,7 @@ class Comment(models.Model):
 	)
 	comment = models.TextField(null=True)
 	publisher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+	created_at = models.DateTimeField(auto_now_add=True, null=True)
 
 	def __str__(self):
 		return self.comment

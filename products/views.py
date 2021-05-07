@@ -65,4 +65,5 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
 
 	def form_valid(self, form):
 		form.instance.publisher = self.request.user
+		form.instance.product = Product.objects.get(pk=self.kwargs['fk'])
 		return super().form_valid(form)

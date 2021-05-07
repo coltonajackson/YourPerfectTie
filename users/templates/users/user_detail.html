@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="item-entry">
+	<div class="card">
+		<div class="card-header">
+			<h1>{{ object.first_name }} {{ object.last_name }}</h1>
+		</div>
+		<div class="card-body">
+			<h4>Username: {{ object.username }}</h6>
+			<h6>Email: {{ object.email }}</h6>
+			<p>Birth Date: {{ object.birth_date }}</p>
+			<p>Age: {{ object.age }}</p>
+			<p>Created At: {{ object.created_at }}</p>
+			<div class="d-flex justify-content-between align-items-center">
+				<div class="btn-group">
+					{% if user.is_superuser %}
+					<a href="{% url 'user_edit' customuser.pk %}"><button type="button" class="btn btn-sm btn-success">Edit</button></a>
+					<a class="ml-1" href="{% url 'user_delete' customuser.pk %}"><button type="button" class="btn btn-sm btn-danger">Delete</button></a>
+					{% endif %}
+				</div>
+			</div>
+			<p>Back to <a href="{% url 'user_list' %}">All Users</a>.</p>
+		</div>
+	</div>
+</div>
+{% endblock content %}

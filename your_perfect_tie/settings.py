@@ -159,3 +159,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Media Uploads
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Stripe Declared Variables
+# STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+# STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
