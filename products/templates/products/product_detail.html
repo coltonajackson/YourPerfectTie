@@ -29,7 +29,7 @@
 			<p>Back to <a href="{% url 'product_list' %}">All Products</a>.</p>
 		</div>
 		<div class="card-footer">
-			{% for comment in item.comments.all %}
+			{% for comment in object.comments.all %}
 			<h6>Comment By <span class="font-weight-bold">{{ comment.publisher }}</span></h6>
 			<p>{{ comment }}</p>
 			{% endfor %}
