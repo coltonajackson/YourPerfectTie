@@ -1,9 +1,11 @@
 {% extends 'layout.html' %}
 
+{% block title %}Delete Category{% endblock %}
+
 {% block content %}
 <h1>Delete category</h1>
 <form action="" method="post">{% csrf_token %}
-	<p>Are you sure you want to delete "{{ category.name }}"?</p>
+	<p>Are you sure you want to delete "{{ category.name }} for {{ category.age_group|yesno:"Adult,Young" }} {{ category.gender|yesno:"Male,Female" }}s"?</p>
 	<button class="btn btn-danger ml-2" type="submit">Confirm</button>
 </form>
 {% endblock content %}

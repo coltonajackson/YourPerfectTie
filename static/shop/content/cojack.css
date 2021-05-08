@@ -20,6 +20,13 @@
     line-height: 60px;
     background-color: #f5f5f5;
 }
+.cojack-hyperlink {
+    text-decoration: none;
+    color: #008484;
+}
+.cojack-hyperlink:hover {
+    color: #008484;
+}
 .cojack-image {
     border-style: double;
     display: block;

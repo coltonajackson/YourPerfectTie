@@ -2,6 +2,8 @@
 
 {% load crispy_forms_tags %}
 
+{% block title %}Comment Details{% endblock %}
+
 {% block content %}
 <div class="item-entry">
 	<h2>Comment by {{ object.publisher }} | {{ object.created_at }}</h2>
