@@ -5,6 +5,24 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="cojack-container container rounded bg-light border border-light mb-2">
+    <div class="rounded my-3 py-1 bg-dark">
+        <h2 class="cojack-text mx-3 my-3 text-center text-light">Filter by Category</h2>
+    </div>
+    <div class="row g-3 mx-3 my-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a id="home" class="nav-link active" href="{% url 'home' %}">Home</a>
+            </li>
+            {% for category in all_categories %}
+            <li class="nav-item">
+                {% comment %}<a id="category_{{ category.id }}" class="nav-link" href="{% url 'category_detail' category.pk %}">{{ category.name }} for {{ category.age_group|yesno:"Adult,Young" }} {{ category.gender|yesno:"Men,Women" }}</a>{% endcomment %}
+                <a id="category_{{ category.id }}" class="nav-link" href="{% url 'category_items' category.pk %}">{{ category.name }} for {{ category.age_group|yesno:"Adult,Young" }} {{ category.gender|yesno:"Men,Women" }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% comment %}
 <div class="jumbotron">
 	<h1 class="display-4">Your Perfect Tie</h1>
