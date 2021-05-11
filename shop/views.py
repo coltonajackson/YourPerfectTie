@@ -5,25 +5,44 @@ from django.views import View
 from django.views.generic import TemplateView, ListView
 # from carton.cart import Cart
 from products.models import Product
+from categories.models import Category
 # import os, stripe
 
 # This is your real test secret API key.
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-# def index(request):
-# 	all_products = Product.objects.all()
-# 	context = {
-# 		'all_products': all_products,
-# 	}
-# 	return render(request, 'index.html', context=context)
+def index(request):
+	all_products = Product.objects.all()
+	all_categories = Category.objects.all()
+	context = {
+		'all_products': all_products,
+		'all_categories': all_categories,
+	}
+	return render(request, 'index.html', context=context)
+
+def featured_items(request):
+	return render(request, 'shop/featured_items.html')
+
+def category_items(request, pk):
+	all_products = Product.objects.all()
+	all_categories = Category.objects.all()
+	filtered_products = Product.objects.filter(category_id=pk)
+	selected_category = Category.objects.get(id=pk)
+	context = {
+		'all_products': all_products,
+		'all_categories': all_categories,
+		'filtered_products': filtered_products,
+		'selected_category': selected_category,
+	}
+	return render(request, 'shop/category_items.html', context=context)
 
 # class HomePageView(TemplateView):
 # 	template_name = 'index.html'
 
-class HomePageView(ListView):
-	model = Product
-	template_name = 'index.html'
+# class HomePageView(ListView):
+# 	model = Product
+# 	template_name = 'index.html'
 
 	# def get_context_data(self, **kwargs):
 	# 	product = Product.objects.get(id=1)

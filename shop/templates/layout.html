@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block title %}{% endblock %} - Your Perfect Tie</title>
+	<title>{% block title %}{% endblock %} | Your Perfect Tie</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="keywords" content="htmlcss bootstrap menu, navbar, offcanvas, sidebar nav menu CSS examples" />
@@ -92,8 +92,25 @@
 			{% endif %}
 		</nav>
 		<div class="cojack-container container">
-			{% block content %}{% endblock %}
-			{% block scripts %}{% endblock %}
+			<div class="cojack-container container rounded bg-light border border-light mb-2">
+				<div class="rounded my-3 py-1 bg-dark">
+					<h2 class="cojack-text mx-3 my-3 text-center text-light">Filter by Category</h2>
+				</div>
+				<div class="row g-3 mx-3 my-3">
+					<ul class="nav nav-pills">
+						<li class="nav-item">
+							<a id="home" class="nav-link active" href="{% url 'home' %}">Home</a>
+						</li>
+						{% for category in all_categories %}
+						<li class="nav-item">
+							{% comment %}<a id="category_{{ category.id }}" class="nav-link" href="{% url 'category_detail' category.pk %}">{{ category.name }} for {{ category.age_group|yesno:"Adult,Young" }} {{ category.gender|yesno:"Men,Women" }}</a>{% endcomment %}
+							<a id="category_{{ category.id }}" class="nav-link" href="{% url 'category_items' category.pk %}">{{ category.name }} for {{ category.age_group|yesno:"Adult,Young" }} {{ category.gender|yesno:"Men,Women" }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% block content %}{% endblock %}
+			</div>
 		</div>
 		<footer class="cojack-footer page-footer fixed-bottom">
 			<div class="container">
